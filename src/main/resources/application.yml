@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: troyanBackend
+
+  profiles:
+    active: dev
+
+#udeesa:
+#  email:
+#    sender:
+#      host: smtp.gmail.com
+#      debug: true
+#      user: "{feruzbekhamrayev2002@gmail.com}" # O'zingizning email manzilingizni kiriting
+#      password: "{faolseans8246}" # Email parolingizni kiriting
