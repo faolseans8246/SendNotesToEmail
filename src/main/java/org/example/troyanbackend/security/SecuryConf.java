@@ -15,47 +15,18 @@ public class SecuryConf {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // CORS konfiguratsiyasini qo'shish
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
                     corsConfig.addAllowedOrigin("https://send-notes-to-email-front.vercel.app"); // Frontend manzili
-                    corsConfig.addAllowedMethod("GET");
-                    corsConfig.addAllowedMethod("POST");
-                    corsConfig.addAllowedMethod("PUT");
-                    corsConfig.addAllowedMethod("DELETE");
-                    corsConfig.addAllowedMethod("OPTIONS");
-                    corsConfig.addAllowedHeader("Content-Type");
-                    corsConfig.setAllowCredentials(true);
+                    corsConfig.addAllowedMethod("*"); // Barcha metodlarga ruxsat berish
+                    corsConfig.addAllowedHeader("*"); // Barcha headerlarga ruxsat berish
+                    corsConfig.setAllowCredentials(true); // Credentiallarni ruxsat berish
                     return corsConfig;
                 }))
                 .csrf(AbstractHttpConfigurer::disable) // CSRF himoyasini o'chirish
                 .authorizeHttpRequests(auth -> {
-                    // umumiy ruxsat berilgan yo'llar
-                    auth.requestMatchers(
-                            "/**",
-                            "/api/**",
-                            "/api/message/**",
-                            "/api/message/send"
-                    ).permitAll();
-
-                    // Swagger API uchun ruxsatlar
-                    auth.requestMatchers(
-                            "/api/auth/**",
-                            "/v2/api-docs",
-                            "/v3/api-docs",
-                            "/v3/api-docs/**",
-                            "/swagger-resources",
-                            "/swagger-resources/**",
-                            "/configuration/ui",
-                            "/configuration/security",
-                            "/swagger-ui/**",
-                            "/webjars/**",
-                            "/swagger-ui.html/**",
-                            "/swagger-ui/index.html"
-                    ).permitAll();
-
-                    // Boshqa barcha so'rovlar faqat autentifikatsiya qilingan foydalanuvchilar uchun
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers("/**", "/api/**", "/api/message/**").permitAll();
+                    auth.anyRequest().authenticated(); // Boshqa barcha so'rovlar autentifikatsiya talab qiladi
                 });
 
         return http.build();

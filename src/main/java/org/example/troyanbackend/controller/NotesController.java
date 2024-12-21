@@ -17,6 +17,7 @@ public class NotesController {
 
     // Ma'lumotlar yuborish qismini shakllantirish
     @PostMapping("/send")
+    @CrossOrigin(origins = "https://send-notes-to-email-front.vercel.app")
     public ResponseEntity<ApiResponse> sendMessage(@RequestBody NotesDto notesDto) {
         ApiResponse response = notesService.sendMail(notesDto);
         return ResponseEntity.status(response.isSuccess() ? 200 : 400).body(response);
