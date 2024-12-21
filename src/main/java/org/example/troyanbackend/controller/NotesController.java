@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/message")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "https://send-notes-to-email-front.vercel.app/", maxAge = 3600)
 public class NotesController {
 
     private final NotesService notesService;
