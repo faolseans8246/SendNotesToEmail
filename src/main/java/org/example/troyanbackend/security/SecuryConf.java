@@ -18,17 +18,17 @@ public class SecuryConf {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(AbstractHttpConfigurer::disable)
-//                .cors(cors -> cors.configurationSource(request -> {
-//                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-//                    corsConfig.addAllowedOrigin("https://send-notes-to-email-front.vercel.app/"); // React app domain (Versel URL)
-//                    corsConfig.addAllowedMethod("GET");
-//                    corsConfig.addAllowedMethod("POST");
-//                    corsConfig.addAllowedMethod("PUT");
-//                    corsConfig.addAllowedMethod("DELETE");
-//                    corsConfig.addAllowedHeader("*");
-//                    return corsConfig;
-//                }))
+//                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.addAllowedOrigin("*"); // React app domain (Versel URL)
+                    corsConfig.addAllowedMethod("GET");
+                    corsConfig.addAllowedMethod("POST");
+                    corsConfig.addAllowedMethod("PUT");
+                    corsConfig.addAllowedMethod("DELETE");
+                    corsConfig.addAllowedHeader("*");
+                    return corsConfig;
+                }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                     auth -> {
