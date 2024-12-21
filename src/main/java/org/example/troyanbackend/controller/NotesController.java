@@ -15,7 +15,6 @@ public class NotesController {
 
     private final NotesService notesService;
 
-    // Ma'lumotlar yuborish qismini shakllantirish
     @PostMapping("/send")
     @CrossOrigin(origins = "https://birthday-frontend-d8395a6906eb.herokuapp.com")
     public ResponseEntity<ApiResponse> sendMessage(@RequestBody NotesDto notesDto) {
