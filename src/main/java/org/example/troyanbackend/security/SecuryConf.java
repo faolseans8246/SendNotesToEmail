@@ -19,6 +19,16 @@ public class SecuryConf {
 
         http
 //                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.addAllowedOrigin("https://your-react-app.vercel.app"); // React app domain (Versel URL)
+                    corsConfig.addAllowedMethod("GET");
+                    corsConfig.addAllowedMethod("POST");
+                    corsConfig.addAllowedMethod("PUT");
+                    corsConfig.addAllowedMethod("DELETE");
+                    corsConfig.addAllowedHeader("*");
+                    return corsConfig;
+                }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                     auth -> {
