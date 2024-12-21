@@ -21,7 +21,7 @@ public class SecuryConf {
 //                .cors(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.addAllowedOrigin("https://your-react-app.vercel.app"); // React app domain (Versel URL)
+                    corsConfig.addAllowedOrigin("https://send-notes-to-email-front.vercel.app/"); // React app domain (Versel URL)
                     corsConfig.addAllowedMethod("GET");
                     corsConfig.addAllowedMethod("POST");
                     corsConfig.addAllowedMethod("PUT");
